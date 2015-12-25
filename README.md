@@ -1,2 +1,2 @@
 # AudioProgrammingBook
-Exercises from the book, "The Audio Programming Book"
+Exercises I am doing from the book, "The Audio Programming Book"
