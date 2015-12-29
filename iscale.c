@@ -32,6 +32,8 @@ int main(int argc, char* argv[])
 	FILE* fp;
 	double intervals[25];
 
+
+	//------INPUT------------------------------------------------------------------------------
 	//check argument number is correct
 	if( argc < 3 )
 	{
@@ -87,7 +89,7 @@ int main(int argc, char* argv[])
 			perror("");
 		}
 	}
-
+	//------------------------------------------------------------------------------
 	
 
 
@@ -102,7 +104,41 @@ int main(int argc, char* argv[])
 	else
 		basefreq = startval;
 
+
 	//calculate ratio from notes and fill the array
-	
+	ratio = pow(2.0,1.0/notes);
+	for( i=0; i<=notes; i++)
+	{
+		intervals[i] = basefreq;
+		basefreq *= ratio;
+	}
+
+
+	//-----OUTPUT------
+	for(i=0; i<=notes; i++){
+
+		if( write_interval )
+			printf("%d:\t%f\t%f\n", i, pow(ratio,i), intervals[i] );
+		else
+			printf("%d:\t%f\n", i, intervals[i] );
+		if(fp)
+		{
+			if(write_interval)
+				err = fprintf(fp, "%d:\t%f\t%f\n", i, pow(ratio,i), intervals[i] );
+			else
+				err = fprintf(fp, "%d:\t%f\n", i, intervals[i] );
+			if( err < 0 )
+				break;
+		}
+
+	}
+
+	if( err < 0 )
+		perror("There was an error writing the file.\n");
+	if(fp)
+		fclose(fp);
+	return 0;
+
+	//------------------------------------------------------------------------------
 
 }

@@ -15,7 +15,7 @@ int main()
 	//build the scale
 	for( i=0; i<7; i++)
 	{
-		//transalte pitch-class to note name
+		//translate pitch-class to note name
 		if(note%12==0) printf("C ");
 		else if(note%12 ==1) printf("C# ");
 		else if(note%12 ==2) printf("D ");
